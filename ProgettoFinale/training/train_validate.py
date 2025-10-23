@@ -45,9 +45,12 @@ def train_and_validate(model, train_loader, validation_loader, epochs=10):
         #  e ottimizzata; poi, la media delle perdite per ciascun epoch viene salvata.
         for inputs, labels in train_loader:
             inputs, labels = inputs.to( device ), labels.to( device )
+
             optimizer.zero_grad()
             outputs = model( inputs )
+
             loss = criterion( outputs, labels )
+
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
@@ -59,6 +62,7 @@ def train_and_validate(model, train_loader, validation_loader, epochs=10):
         validation_loss = 0.0
         total = 0
         correct = 0
+        
         # Si valuta il modello usando un set di validazione, senza aggiornare i pesi del modello (torch.no_grad())
         with torch.no_grad():
             # calcolo e salvo la perdita di validazione e l'accuratezza:

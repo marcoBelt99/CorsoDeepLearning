@@ -66,5 +66,6 @@ class Net(nn.Module):
         return x
 
 ## Creo un'istanza della rete Net() pronta per essere addestrata o testata
+net = Net()
 
          
