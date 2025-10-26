@@ -1,6 +1,6 @@
 import os # per interagire con il filesystem
 import pandas as pd # per leggere i file csv che contengono le etichette delle immagini
-from torchvision.io import read_image # read_image per leggere le immagini
+# from torchvision.io import read_image # read_image per leggere le immagini
 from torchvision.io import decode_image
 from torch.utils.data import Dataset # Dataset è la classe base per creare dataset personalizzati
 
@@ -16,9 +16,8 @@ class CustomImageDataset(Dataset):
     la conversione da etichette testuali ad interi.
     '''
     def __init__(self, annotations_file, img_dir, transform=None, target_transform=None):
-        # pd.csv carica le annotazioni delle immagini in un dataframe di pandas. Questo DF è accessibile
-        # a tutta la classe.
-        self.img_labels = pd.csv( annotations_file )
+        
+        self.img_labels = pd.csv( annotations_file ) # pd.csv carica le annotazioni delle immagini in un dataframe di pandas. Questo DF è accessibile a tutta la classe.
         self.img_dir = img_dir # memorizza il percorso della directory dell'immagine.
         self.transform = transform # memorizzo la funzione di trasformazione
         self.target_transform = target_transform # memorizzo la funzione di trasformazione
